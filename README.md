@@ -73,7 +73,9 @@ pip install selenium pytest
 ```
 
 ### 4. Execute the Test Suite
-```bash
+
 To run all tests in the repository and output results via the console, execute:
+
+```bash
 pytest main.py -v
 ```
