@@ -1,50 +1,79 @@
-# Proyecto Urban Routes - Automatización de Pruebas (QA)
+# 🚖 Urban Routes - End-to-End Automation Testing Framework
 
-## Descripción del Proyecto
-Este proyecto consiste en una suite de pruebas automatizadas para la aplicación **Urban Routes**. La automatización cubre el flujo completo de reservación de un taxi, desde la configuración de las direcciones de origen y destino hasta la confirmación de un conductor asignado, pasando por la selección de tarifas, registro de teléfono, métodos de pago y selección de servicios adicionales (manta, helados, etc.).
+[![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
+[![Testing Framework](https://img.shields.io/badge/test--framework-pytest-green.svg)](https://docs.pytest.org/)
+[![Automation Tool](https://img.shields.io/badge/automation-selenium--webdriver-orange.svg)](https://www.selenium.dev/)
 
-El objetivo principal es validar que la integración de los diferentes módulos de la aplicación funcione correctamente en un entorno de pruebas extremo a extremo (E2E).
+*Read this document in other languages: [Español (Spanish)](./README.es.md)*
 
-## Tecnologías y Técnicas Utilizadas
-Para este proyecto se implementaron las siguientes herramientas y patrones de diseño:
+---
 
-* **Lenguaje:** Python 3.x
-* **Framework de Pruebas:** Pytest
-* **Automatización de Navegador:** Selenium WebDriver
-* **Patrón de Diseño:** **POM (Page Object Model)**. Se separó la lógica de los localizadores y métodos de interacción en la clase `UrbanRoutesPage` para mejorar la mantenibilidad del código.
-* **Esperas Dinámicas:** Uso de `WebDriverWait` y `expected_conditions` para manejar la latencia de la red y elementos asíncronos (como la recepción del código SMS y la asignación del conductor).
-* **Configuración de Logs:** Uso de `goog:loggingPrefs` para interceptar registros de rendimiento y recuperar códigos de confirmación dinámicos.
+## 📋 Project Description
+This repository contains a robust, scalable **End-to-End (E2E) Automated Testing Suite** designed for the **Urban Routes** application. The suite covers the complete user journey of booking a taxi—starting from setting origin/destination addresses to final driver assignment confirmation. 
 
-## Estructura del Repositorio
-* `data.py`: Contiene las constantes y datos de prueba (URLs, direcciones, números de teléfono, etc.).
-* `main.py`: Contiene la lógica de los Page Objects (clase `UrbanRoutesPage`), la función de utilidad para el código SMS y la clase de pruebas `TestUrbanRoutes`.
-* `.gitignore`: Configurado para evitar subir archivos de entorno virtual (`.venv`) y configuraciones locales de IDE (`.idea`).
+The primary goal is to validate seamless cross-module data integration, business logic constraints, and dynamic element synchronization across a complete E2E transactional workflow.
 
-## Instrucciones para Ejecutar las Pruebas
+### 🧪 Automated Workflows Covered
+* 📍 Configuring origin and destination addresses.
+* 💳 Selecting distinct tariff options and managing dynamic payment method registration.
+* 📱 Phone number authentication and parsing verification.
+* 🍦 Adding customizable extra services (blankets, ice cream, etc.).
+* ⏳ Handling multi-stage asynchronous processing (waiting for dynamic driver dispatch loops).
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone [URL_DE_TU_REPOSITORIO]
-    cd qa-project-Urban-Routes-es
-    ```
+---
 
-2.  **Configurar el entorno virtual:**
-    ```bash
-    python -m venv venv
-    # En Windows:
-    source venv/Scripts/activate
-    # En macOS/Linux:
-    source venv/bin/activate
-    ```
+## 🛠️ Tech Stack & Engineering Techniques
 
-3.  **Instalar dependencias:**
-    Asegúrate de tener instaladas las librerías necesarias:
-    ```bash
-    pip install selenium pytest
-    ```
+* **Language:** `Python 3.12+`
+* **Test Runner:** `Pytest`
+* **Browser Automation:** `Selenium WebDriver`
+* **Architectural Pattern:** **Page Object Model (POM)**. Designed with strict separation of concerns, decoupling structural UI locators and page-interaction methods (`UrbanRoutesPage`) from structural assertions.
+* **Dynamic Explicit Waits:** Implemented `WebDriverWait` combined with `expected_conditions` to smoothly handle asynchronous UI state shifts, network latency, and dynamic modal overlays.
+* **Log Ingestion Workflows:** Configured native browser logging capabilities (`goog:loggingPrefs`) to programmatically intercept performance logs and dynamically extract SMS confirmation tokens directly from the backend stream.
 
-4.  **Ejecutar los tests:**
-    Desde la terminal en la raíz del proyecto, ejecuta:
-    ```bash
-    pytest main.py
-    ```
+---
+
+## 📐 Architecture & Repository Structure
+
+```mermaid
+graph TD
+    A[data.py: Test Data & Environment Constants] --> B[main.py: UrbanRoutesPage - Locators & Interaction Logic]
+    B --> C[main.py: TestUrbanRoutes - Pytest Test Suite Executions]
+    C --> D[Local Execution / WebDriver Instance]
+   ```
+   
+* 📦 `data.py`: Centralized repository for static test inputs, address parameters, specific formatting regex, and target URLs.
+* 🛠️ `main.py`: Core logic containing Page Objects components, SMS parsing utility scripts, and final structural test cases (`TestUrbanRoutes`).
+* 🛡️ `.gitignore`: Tailored configuration guarding against checking in telemetry tracking, local IDE files (`.idea`), and heavy workspace virtual environments (`.venv`).
+
+---
+
+## 🚀 Getting Started & Execution Instructions
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/hernanvargas-byte/qa-project-Urban-Routes-es.git](https://github.com/hernanvargas-byte/qa-project-Urban-Routes-es.git)
+cd qa-project-Urban-Routes-es
+```
+
+### 2. Configure the Virtual Environment
+```bash
+python -m venv .venv
+
+# On Windows (Git Bash / PowerShell):
+source .venv/Scripts/activate
+
+# On macOS/Linux:
+source .venv/bin/activate
+```
+
+### 3. Install Required Dependencies
+```bash
+pip install selenium pytest
+```
+
+### 4. Execute the Test Suite
+```bash
+To run all tests in the repository and output results via the console, execute:
+pytest main.py -v
+```
